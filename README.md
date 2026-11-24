@@ -18,8 +18,8 @@ falls over.
 
 ## Features
 
-- **24/7 playback** from five rotating lo-fi stations — no YouTube, so no token, no
-  extractor breakage, no per-track API calls.
+- **24/7 playback** from nine rotating stations (eight lo-fi/chill, one anime OP/ED) — no
+  YouTube, so no token, no extractor breakage, no per-track API calls.
 - **Self-healing supervisor** at three layers: `after=` callback when ffmpeg dies, a
   watchdog on frame counters, and `on_voice_state_update` when the bot is kicked or moved.
 - **Station rotation** when a stream ends on its own, with a two-strike rule so a wedged
@@ -145,7 +145,9 @@ STATIONS = {
 }
 ```
 
-Keys are what users type, `ORDER` is the rotation order. Test any URL before trusting it:
+Keys are what users type, `ORDER` is the rotation order (insertion order — the anime
+station sits last so automatic rotation stays lo-fi first). `/station` with no argument
+lists them all. Test any URL before trusting it:
 
 ```bash
 python3 tools/check_stations.py                # every station in bot.py

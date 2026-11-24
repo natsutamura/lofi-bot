@@ -39,11 +39,17 @@ class Payload:
 
 # key -> (display name, stream url). Keys are what users type; keep them short.
 STATIONS: dict[str, tuple[str, str]] = {
-    "lautfm":   ("laut.fm lofi",        "https://stream.laut.fm/lofi"),
-    "isekoi":   ("ISEKOI chill (320k)", "https://public.isekoi-radio.com/listen/chill/radio.mp3"),
-    "litt":     ("LITT Live lofi",      "https://das-sa39.cdnstream1.com/5582_128"),
-    "chillhop": ("I Love Chillhop",     "https://ilm.stream18.radiohost.de/ilm_ilovechillhop_mp3-192"),
-    "moezeno":  ("MoE Lofi",            "http://stream.zeno.fm/3u1qndyk8rhvv"),
+    "lautfm":      ("laut.fm lofi",        "https://stream.laut.fm/lofi"),
+    # laut.fm lo-fi / chill family
+    "lofiradio":   ("Lofi Radio",           "https://stream.laut.fm/lofi-radio"),
+    "loungetunes": ("Loungetunes",          "https://stream.laut.fm/loungetunes"),
+    "radiofive":   ("Radiofive",            "https://stream.laut.fm/radiofive"),
+    "chillhop":    ("I Love Chillhop",      "https://ilm.stream18.radiohost.de/ilm_ilovechillhop_mp3-192"),
+    "isekoi":      ("ISEKOI chill (320k)",  "https://public.isekoi-radio.com/listen/chill/radio.mp3"),
+    "litt":        ("LITT Live lofi",       "https://das-sa39.cdnstream1.com/5582_128"),
+    "moezeno":     ("MoE Lofi",             "http://stream.zeno.fm/3u1qndyk8rhvv"),
+    # anime OP/ED + chill bass, kept last so auto-rotation stays lo-fi first
+    "animealive":  ("Animealive",           "https://stream.laut.fm/animealive"),
 }
 ORDER = list(STATIONS)
 
@@ -443,7 +449,7 @@ class LofiBot(discord.Client):
         for cmd, desc in rows:
             base = cmd.split(" ")[0]
             e.add_field(name=f"`{PREFIX}{cmd}` · `/{base}`", value=desc, inline=False)
-        e.set_footer(text="Daftar station: lautfm · isekoi · litt · chillhop · moezeno")
+        e.set_footer(text="Daftar station: " + " · ".join(ORDER))
         return e
 
     # ── slash commands ────────────────────────────────────────────────────────
