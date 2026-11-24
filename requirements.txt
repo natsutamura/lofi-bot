@@ -1,0 +1,4 @@
+# discord.py 2.7.1 predates davey 0.2.0; 0.2.0 leaves the DAVE session stuck at
+# ready=False -> voice connects, green ring shows, but listeners hear silence.
+discord.py[voice]==2.7.1
+davey==0.1.7

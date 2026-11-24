@@ -1,0 +1,19 @@
+[Unit]
+Description=Lo-fi radio bot (24/7 Discord voice)
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/lofi-bot
+EnvironmentFile=/opt/lofi-bot/.env
+ExecStart=/opt/lofi-bot/.venv/bin/python /opt/lofi-bot/bot.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
